@@ -8,17 +8,41 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "users")
+@Table(name = "foods")
 
 public class Food {
     @Id
-    @GeneratedValue(strategy = SEQUENCE, generator = "foods_id_swq")
+    @GeneratedValue(strategy = SEQUENCE, generator = "foods_id_seq1")
     @SequenceGenerator(name = "foods_id_seq1", sequenceName = "foods_id_seq", allocationSize = 1)
     private Long Id;
     @Column(name = "food_name")
     private String foodName;
     @Column(name = "food_calorie")
-    private int FoodCalorie;
+    private int foodCalorie;
     @Column(name = "food_type")
     private String foodType;
+
+    public String getFoodName() {
+        return foodName;
+    }
+
+    public int getFoodCalorie() {
+        return foodCalorie;
+    }
+
+    public String getFoodType() {
+        return foodType;
+    }
+
+    public void setFoodName(String foodName) {
+        this.foodName = foodName;
+    }
+
+    public void setFoodCalorie(int foodCalorie) {
+        this.foodCalorie = foodCalorie;
+    }
+
+    public void setFoodType(String foodType) {
+        this.foodType = foodType;
+    }
 }
