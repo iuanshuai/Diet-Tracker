@@ -7,3 +7,4 @@ create table users (
     primary key (Id)
 );
 ALTER  SEQUENCE users_id_seq OWNED BY users.id;
+

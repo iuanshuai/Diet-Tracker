@@ -15,7 +15,7 @@
 
     <build>
         <plugins>
-        <!--flyway database migration -->
+            <!--flyway database migration -->
             <plugin>
                 <groupId>org.flywaydb</groupId>
                 <artifactId>flyway-maven-plugin</artifactId>
@@ -32,7 +32,6 @@
             </plugin>
         </plugins>
     </build>
-
 
 
     <dependencies>
@@ -58,6 +57,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
+
             <version>${spring.version}</version>
         </dependency>
 
@@ -92,9 +92,8 @@
         </dependency>
 
 
-
         <!--hibinate-->
-         <dependency>
+        <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>${hibernate.version}</version>
@@ -131,11 +130,7 @@
         </dependency>
 
 
-
     </dependencies>
-
-
-
 
 
 </project>

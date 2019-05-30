@@ -3,9 +3,11 @@ package me.syus.calorietracker.domain;
 import javax.persistence.*;
 
 import static javax.persistence.GenerationType.SEQUENCE;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
-@Table(name="users")
+@Table(name = "users")
 
 public class User {
     @Id
@@ -16,6 +18,7 @@ public class User {
     private String email;
     @Column(name = "last_name")
     private String lastName;
+
     @Column(name = "first_name")
     private String firstName;
 
