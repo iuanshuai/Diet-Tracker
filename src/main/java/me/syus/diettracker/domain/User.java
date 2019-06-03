@@ -1,4 +1,4 @@
-package me.syus.calorietracker.domain;
+package me.syus.diettracker.domain;
 
 import javax.persistence.*;
 
