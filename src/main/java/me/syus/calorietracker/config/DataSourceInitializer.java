@@ -2,6 +2,8 @@ package me.syus.calorietracker.config;
 
 import org.apache.commons.dbcp.BasicDataSource;
 import org.hibernate.jpa.HibernatePersistenceProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -12,15 +14,16 @@ import java.util.Properties;
 @Configuration
 
 public class DataSourceInitializer {
+    private final Logger logger = LoggerFactory.getLogger(getClass());
     protected String databaseUrl = "jdbc:postgresql://localhost:5432/calorietracker";
     protected String databaseUserName = "admin";
     protected String databasePassword = "password";
-    protected String driverClassName="org.postgresql.ds.PGSimpleDataSource";
+    protected String driverClassName = "org.postgresql.ds.PGSimpleDataSource";
 
 
     @Bean(name = "dataSource")
-
     public DataSource getDataSource() {
+        logger.debug("generating datasource bean");
         DataSource dataSource = createDataSource();
         return dataSource;
     }
@@ -44,7 +47,7 @@ public class DataSourceInitializer {
     public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean() {
         LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
         factoryBean.setDataSource(getDataSource());
-        factoryBean.setPackagesToScan(new String[] {"me.syus.calorietracker.domain"});
+        factoryBean.setPackagesToScan(new String[]{"me.syus.calorietracker.domain"});
         factoryBean.setPersistenceProviderClass(HibernatePersistenceProvider.class);
         Properties props = new Properties();
         props.put("hibernate.dialect", "org.hibernate.spatial.dialect.postgis.PostgisDialect");

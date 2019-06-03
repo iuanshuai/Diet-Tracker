@@ -4,23 +4,27 @@ import javax.persistence.*;
 
 import static javax.persistence.GenerationType.SEQUENCE;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import java.util.List;
 
 @Entity
 @Table(name = "foods")
-
 public class Food {
     @Id
     @GeneratedValue(strategy = SEQUENCE, generator = "foods_id_seq1")
     @SequenceGenerator(name = "foods_id_seq1", sequenceName = "foods_id_seq", allocationSize = 1)
     private Long Id;
+
     @Column(name = "food_name")
     private String foodName;
+
     @Column(name = "food_calorie")
     private int foodCalorie;
+
     @Column(name = "food_type")
     private String foodType;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy="food1", cascade = CascadeType.ALL)
+    private List<Image> images;
 
     public String getFoodName() {
         return foodName;
