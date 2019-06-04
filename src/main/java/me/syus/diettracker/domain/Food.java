@@ -26,6 +26,10 @@ public class Food {
     @OneToMany(fetch = FetchType.LAZY, mappedBy="food1", cascade = CascadeType.ALL)
     private List<Image> images;
 
+    public Long getId() {
+        return Id;
+    }
+
     public String getFoodName() {
         return foodName;
     }

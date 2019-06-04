@@ -22,6 +22,10 @@ public class User {
     @Column(name = "first_name")
     private String firstName;
 
+    public Long getId() {
+        return Id;
+    }
+
     public String getEmail() {
         return email;
     }

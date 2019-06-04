@@ -22,7 +22,35 @@ public class Image {
 
     @ManyToOne
     @JoinColumn(name="food_id")
-    private Food food1;
+    private Food food;
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public Food getFood1() {
+        return food;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public void setFood1(Food food1) {
+        this.food = food1;
+    }
 
     public Image() {
     }
