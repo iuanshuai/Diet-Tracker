@@ -23,7 +23,7 @@ public class Food {
     @Column(name = "food_type")
     private String foodType;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy="food1", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy="food", cascade = CascadeType.ALL)
     private List<Image> images;
 
     public Long getId() {

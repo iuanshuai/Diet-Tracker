@@ -36,7 +36,7 @@ public class Image {
         return url;
     }
 
-    public Food getFood1() {
+    public Food getFood() {
         return food;
     }
 
@@ -48,7 +48,7 @@ public class Image {
         this.url = url;
     }
 
-    public void setFood1(Food food1) {
+    public void setFood(Food food1) {
         this.food = food1;
     }
 
