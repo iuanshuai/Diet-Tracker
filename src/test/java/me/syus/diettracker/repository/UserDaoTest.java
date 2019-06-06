@@ -10,7 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import static junit.framework.TestCase.assertTrue;
+import static junit.framework.TestCase.*;
 
 
 @ContextConfiguration(classes = {AppConfig.class})
@@ -21,9 +21,8 @@ public class UserDaoTest {
     @Autowired
     private UserDao userDao;
 
-
     @Test
-    @Transactional
+    @Transactional // after doing unit test, roll back
     public void findByIdTest() {
         User expectedResult = new User();
         expectedResult.setFirstName("san");
@@ -31,6 +30,7 @@ public class UserDaoTest {
         expectedResult.setLastName("Zhang");
         userDao.save(expectedResult);
         User actualResult = userDao.findById(expectedResult.getId());
+        assertNotNull(actualResult);
         
     }
 }

@@ -1,5 +1,6 @@
 package me.syus.diettracker.repository;
-import me.syus.diettracker.domain.User;
+
+import me.syus.diettracker.domain.Food;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
@@ -9,38 +10,35 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
-public class UserDaoImpl implements UserDao {
+public class FoodDaoImpl implements FoodDao {
 
     private SessionFactory sessionFactory;
 
+
     @Override
     @Transactional
-    public User save(User user) {
+    public Food save(Food food) {
         Session session = sessionFactory.getCurrentSession();
-        session.save(user);
-        return user;
+        session.save(food);
+        return food;
     }
 
     @Override
     @Transactional(readOnly = true)
-    public List<User> findAll() {
-        String hql = "FROM User";
+    public List<Food> findAll() {
+        String hql = "FROM Food";
         Session s = sessionFactory.getCurrentSession();
-        TypedQuery<User> query = s.createQuery(hql);
+        TypedQuery<Food> query = s.createQuery(hql);
         return query.getResultList();
     }
 
     @Override
-    public User findByIdEager(Long id) {
+    public Food findByIdEager(Long id) {
         return null;
     }
 
     @Override
-    public User findById(Long id) {
-        String hql = "FROM User u where u.id = :userId";
-        Session s = sessionFactory.getCurrentSession();
-        TypedQuery<User> query = s.createQuery(hql);
-        query.setParameter("foodId", id);
-        return query.getSingleResult();
+    public Food findById(Long id) {
+        return null;
     }
 }

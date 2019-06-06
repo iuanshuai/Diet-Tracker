@@ -33,6 +33,8 @@ public class DataSourceInitializer {
         return dataSource;
     }
 
+
+
     @Bean(name="hibernate4AnnotatedSessionFactory")
 //  @DependsOn("flyway")
     @Profile({"dev","test","staging","prod"})
@@ -91,21 +93,6 @@ public class DataSourceInitializer {
         dataSource.setNumTestsPerEvictionRun(3);
         dataSource.setMinEvictableIdleTimeMillis(1800000);
         return dataSource;
-    }
-
-    @Bean(name = "entityManagerFactory")
-    public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean() {
-        LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
-        factoryBean.setDataSource(getDataSource());
-        factoryBean.setPackagesToScan(new String[]{"me.syus.diettracker.domain"});
-        factoryBean.setPersistenceProviderClass(HibernatePersistenceProvider.class);
-        Properties props = new Properties();
-        props.put("hibernate.dialect", "org.hibernate.spatial.dialect.postgis.PostgisDialect");
-        props.put("hibernate.hbm2ddl.auto", "validate");
-        props.put("hibernate.connection.charSet", "UTF-8");
-        props.put("hibernate.show_sql", "true");
-        factoryBean.setJpaProperties(props);
-        return factoryBean;
     }
 
 }
