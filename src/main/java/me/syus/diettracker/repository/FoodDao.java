@@ -5,7 +5,7 @@ import me.syus.diettracker.domain.Food;
 import java.util.List;
 
 public interface FoodDao {
-    Food save(Food user);
+    Food save(Food food);
 
     List<Food> findAll();
 

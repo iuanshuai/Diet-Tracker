@@ -39,6 +39,10 @@ public class FoodDaoImpl implements FoodDao {
 
     @Override
     public Food findById(Long id) {
-        return null;
+        String hql = "FROM Food f where f.id = :foodId";
+        Session s = sessionFactory.getCurrentSession();
+        TypedQuery<Food> query = s.createQuery(hql);
+        query.setParameter("foodId", id);
+        return query.getSingleResult();
     }
 }

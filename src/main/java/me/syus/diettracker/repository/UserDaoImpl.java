@@ -40,7 +40,7 @@ public class UserDaoImpl implements UserDao {
         String hql = "FROM User u where u.id = :userId";
         Session s = sessionFactory.getCurrentSession();
         TypedQuery<User> query = s.createQuery(hql);
-        query.setParameter("foodId", id);
+        query.setParameter("userId", id);
         return query.getSingleResult();
     }
 }
