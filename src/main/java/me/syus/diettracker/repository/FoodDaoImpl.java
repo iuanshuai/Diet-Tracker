@@ -3,6 +3,7 @@ package me.syus.diettracker.repository;
 import me.syus.diettracker.domain.Food;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,8 +11,9 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
-public class FoodDaoImpl implements FoodDao {
+public class FoodDaoImpl implements CRUDDao<Food, Long> , FoodDao {
 
+    @Autowired
     private SessionFactory sessionFactory;
 
 
@@ -34,7 +36,11 @@ public class FoodDaoImpl implements FoodDao {
 
     @Override
     public Food findByIdEager(Long id) {
-        return null;
+        String hql = "FROM Food f LEFT JOIN FETCH f.images where f.id = :foodId";
+        Session s = sessionFactory.getCurrentSession();
+        TypedQuery<Food> query = s.createQuery(hql);
+        query.setParameter("foodId", id);
+        return query.getSingleResult();
     }
 
     @Override
