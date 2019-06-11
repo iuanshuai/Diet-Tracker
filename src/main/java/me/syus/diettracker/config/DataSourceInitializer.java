@@ -20,7 +20,7 @@ import java.util.Properties;
 
 public class DataSourceInitializer {
     private final Logger logger = LoggerFactory.getLogger(getClass());
-    protected String databaseUrl = "jdbc:postgresql://localhost:5432/calorietracker";
+    protected String databaseUrl = "jdbc:postgresql://localhost:5430/calorietracker";
     protected String databaseUserName = "admin";
     protected String databasePassword = "password";
     protected String driverClassName = "org.postgresql.ds.PGSimpleDataSource";

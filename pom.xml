@@ -25,7 +25,7 @@
                 <version>${flyway.version}</version>
                 <configuration>
                     <driver>org.postgresql.Driver</driver>
-                    <url>jdbc:postgresql://localhost:5432/calorietracker</url>
+                    <url>jdbc:postgresql://localhost:5430/calorietracker</url>
                     <user>admin</user>
                     <password>password</password>
                     <locations>
