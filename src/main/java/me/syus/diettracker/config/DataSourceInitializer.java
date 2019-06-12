@@ -2,16 +2,15 @@ package me.syus.diettracker.config;
 
 import org.apache.commons.dbcp.BasicDataSource;
 import org.hibernate.SessionFactory;
-import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 
 import javax.sql.DataSource;
 import java.util.Properties;
@@ -20,16 +19,31 @@ import java.util.Properties;
 
 public class DataSourceInitializer {
     private final Logger logger = LoggerFactory.getLogger(getClass());
-    protected String databaseUrl = "jdbc:postgresql://localhost:5430/calorietracker";
-    protected String databaseUserName = "admin";
-    protected String databasePassword = "password";
+
+    @Value("${database.serverName}")
+    protected String databaseUrl;
+
+    @Value("${database.username}")
+    protected String databaseUserName;
+
+    @Value("${database.password}")
+    protected String databasePassword;
+
     protected String driverClassName = "org.postgresql.ds.PGSimpleDataSource";
+
+
+//    protected String databaseUrl = "jdbc:postgresql://localhost:5430/calorietracker";
+//    protected String databaseUserName = "admin";
+//    protected String databasePassword = "password";
 
 
     @Bean(name = "dataSource")
     public DataSource getDataSource() {
         logger.debug("generating datasource bean");
         DataSource dataSource = createDataSource();
+//        logger.debug("database url=" + databaseUrl);
+//        logger.debug("database username=" + databaseUserName);
+//        logger.debug("database password=" + databasePassword);
         return dataSource;
     }
 

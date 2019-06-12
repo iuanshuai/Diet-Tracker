@@ -1,4 +1,5 @@
 package me.syus.diettracker.repository;
+
 import me.syus.diettracker.config.AppConfig;
 import me.syus.diettracker.domain.Food;
 import me.syus.diettracker.domain.Image;
@@ -21,7 +22,6 @@ import static junit.framework.TestCase.*;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ActiveProfiles("unit")
 @WebAppConfiguration
-
 public class FoodDaoTest {
     @Autowired
     private FoodDao foodDao;
@@ -47,9 +47,9 @@ public class FoodDaoTest {
     @Autowired
     private SessionFactory sessionFactory;
 
+
     @Test
     @Transactional
-
     public void findByIdEagerTest() {
         Food expectedResult = new Food();
         expectedResult.setFoodName("Chicken Nuddle");

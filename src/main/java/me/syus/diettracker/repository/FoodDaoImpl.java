@@ -17,11 +17,13 @@ public class FoodDaoImpl implements CRUDDao<Food, Long> , FoodDao {
     private SessionFactory sessionFactory;
 
 
+
     @Override
     @Transactional
     public Food save(Food food) {
         Session session = sessionFactory.getCurrentSession();
         session.save(food);
+
         return food;
     }
 
