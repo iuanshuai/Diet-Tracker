@@ -33,8 +33,6 @@ public class UserController {
     @RequestMapping(value="/{Id}", method = RequestMethod.GET)
     public User getUserById(@PathVariable("Id") Long Id) {
         logger.debug("find users id: " + Id);
-        return null;
-
+        return userDao.findById(Id);
     }
-
 }

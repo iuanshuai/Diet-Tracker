@@ -3,6 +3,7 @@ package me.syus.diettracker.repository;
 import me.syus.diettracker.config.AppConfig;
 import me.syus.diettracker.domain.Food;
 import me.syus.diettracker.domain.Image;
+import me.syus.diettracker.domain.User;
 import org.hibernate.SessionFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;

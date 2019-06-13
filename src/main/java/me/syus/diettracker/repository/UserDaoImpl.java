@@ -10,7 +10,7 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
-public class UserDaoImpl implements UserDao {
+public class UserDaoImpl implements CRUDDao<User, Long>, UserDao {
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -38,11 +38,20 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    @Transactional
     public User findById(Long id) {
         String hql = "FROM User u where u.id = :userId";
         Session s = sessionFactory.getCurrentSession();
         TypedQuery<User> query = s.createQuery(hql);
         query.setParameter("userId", id);
-        return query.getSingleResult();
+        User user;
+        try {
+            user = query.getSingleResult();
+
+        } catch (Exception e) {
+            user = null;
+
+        }
+        return user;
     }
 }

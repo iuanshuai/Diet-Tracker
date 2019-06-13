@@ -5,13 +5,11 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
-public class ImageDaoImpl implements ImageDao {
+public class ImageDaoImpl implements CRUDDao<Image, Long>, ImageDao {
 
     @Autowired
     private SessionFactory sessionFactory;
