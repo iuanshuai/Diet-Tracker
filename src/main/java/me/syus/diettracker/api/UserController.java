@@ -7,10 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,11 +20,19 @@ public class UserController {
     @Autowired
     private UserDao userDao;
 
-    @RequestMapping(method = RequestMethod.GET)
+    // /api/users GET
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public List getUserList() {
         logger.debug("list users");
         return userDao.findAll();
     }
+
+    // /api/users POST
+    @RequestMapping(value = "", method = RequestMethod.POST)
+    public User addUser(@RequestBody User u) {
+        return userDao.save(u);
+    }
+
 
     // /api/users/5  /object/object_id
     @RequestMapping(value="/{Id}", method = RequestMethod.GET)
@@ -35,4 +40,12 @@ public class UserController {
         logger.debug("find users id: " + Id);
         return userDao.findById(Id);
     }
+
+    // /api/user?username=seany
+    @RequestMapping(value="", method = RequestMethod.GET, params = "id")
+    public User getUserByUsername(@RequestParam("id") Long id) {
+        logger.debug("find users by id: " + id);
+        return userDao.findById(id);
+    }
+
 }

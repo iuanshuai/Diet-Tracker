@@ -54,4 +54,14 @@ public class UserDaoImpl implements CRUDDao<User, Long>, UserDao {
         }
         return user;
     }
+
+    @Override
+    public User findByFirstName(String firstName) {
+        return null;
+    }
+
+    @Override
+    public User findByLastName(String lastName) {
+        return null;
+    }
 }

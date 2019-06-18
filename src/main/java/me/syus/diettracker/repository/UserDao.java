@@ -10,4 +10,8 @@ public interface UserDao {
     User findByIdEager(Long id);
 
     User findById(Long id);
+
+    User findByFirstName(String firstName);
+
+    User findByLastName(String lastName);
 }
