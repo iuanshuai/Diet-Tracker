@@ -17,24 +17,9 @@
         <fasterxml-jackson.version>2.9.5</fasterxml-jackson.version>
     </properties>
 
+
     <build>
-        <plugins>
-            <!--flyway database migration -->
-            <plugin>
-                <groupId>org.flywaydb</groupId>
-                <artifactId>flyway-maven-plugin</artifactId>
-                <version>${flyway.version}</version>
-                <configuration>
-                    <driver>org.postgresql.Driver</driver>
-                    <url>jdbc:postgresql://localhost:5430/diettracker</url>
-                    <user>admin</user>
-                    <password>password</password>
-                    <locations>
-                        <location>db/migration</location>
-                    </locations>
-                </configuration>
-            </plugin>
-        </plugins>
+
     </build>
 
 
@@ -200,6 +185,56 @@
 
     </dependencies>
 
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <build>
+                <plugins>
+                    <!--flyway database migration -->
+                    <plugin>
+                        <groupId>org.flywaydb</groupId>
+                        <artifactId>flyway-maven-plugin</artifactId>
+                        <version>${flyway.version}</version>
+                        <configuration>
+                            <driver>org.postgresql.Driver</driver>
+                            <url>jdbc:postgresql://localhost:5430/diettracker</url>
+                            <user>${db_username}</user>
+                            <password>${db_password}</password>
+                            <locations>
+                                <location>db/migration</location>
+                            </locations>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>unit</id>
+            <build>
+                <plugins>
+                    <!--flyway database migration -->
+                    <plugin>
+                        <groupId>org.flywaydb</groupId>
+                        <artifactId>flyway-maven-plugin</artifactId>
+                        <version>${flyway.version}</version>
+                        <configuration>
+                            <driver>org.postgresql.Driver</driver>
+                            <url>jdbc:postgresql://localhost:5430/diettracker_unit</url>
+                            <user>${db_username}</user>
+                            <password>${db_password}</password>
+                            <locations>
+                                <location>db/migration</location>
+                            </locations>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+
+
+    </profiles>
 
 </project>
 
