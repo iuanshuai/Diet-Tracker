@@ -56,8 +56,22 @@ public class UserDaoImpl implements CRUDDao<User, Long>, UserDao {
     }
 
     @Override
+    @Transactional
     public User findByFirstName(String firstName) {
-        return null;
+        String hql = "FROM User u where lower(u.firstName) = lower(:firstName2)";
+//        String hql = "FROM User u where u.firstName = :firstName2";
+        Session s = sessionFactory.getCurrentSession();
+        TypedQuery<User> query = s.createQuery(hql);
+        query.setParameter("firstName2", firstName);
+        User user;
+        try {
+            user = query.getSingleResult();
+
+        } catch (Exception e) {
+            user = null;
+
+        }
+        return user;
     }
 
     @Override

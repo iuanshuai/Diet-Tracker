@@ -1,6 +1,7 @@
 package me.syus.diettracker.api;
 
 
+import me.syus.diettracker.Service.UserService;
 import me.syus.diettracker.domain.User;
 import me.syus.diettracker.repository.UserDao;
 import org.slf4j.Logger;
@@ -19,6 +20,7 @@ public class UserController {
 
     @Autowired
     private UserDao userDao;
+    private UserService userService;
 
     // /api/users GET
     @RequestMapping(value = "", method = RequestMethod.GET)
@@ -41,11 +43,19 @@ public class UserController {
         return userDao.findById(Id);
     }
 
-    // /api/user?username=seany
+    // /api/users?username=seany
     @RequestMapping(value="", method = RequestMethod.GET, params = "id")
     public User getUserByUsername(@RequestParam("id") Long id) {
         logger.debug("find users by id: " + id);
         return userDao.findById(id);
+    }
+
+    // /api/users?firstname=seany
+    @RequestMapping(value = "", method = RequestMethod.GET, params = "firstname")
+    public User getUserByFirstName(@RequestParam("firstname") String firstName) {
+        logger.debug("find users by firstname: " + firstName);
+        return userDao.findByFirstName(firstName);
+
     }
 
 }

@@ -2,6 +2,7 @@ package me.syus.diettracker.repository;
 
 import me.syus.diettracker.config.AppConfig;
 import me.syus.diettracker.domain.User;
+import org.hibernate.SessionFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -24,6 +25,8 @@ import static junit.framework.TestCase.*;
 public class UserDaoTest {
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private SessionFactory sessionFactory;
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -39,6 +42,26 @@ public class UserDaoTest {
         User actualResult = userDao.findById(expectedResult.getId());
 
         assertNotNull(actualResult);
+        assertEquals(expectedResult, actualResult);
+
+    }
+
+
+    @Test
+    @Transactional // after doing unit test, roll back
+    public void findByFirstNameTest() {
+        User expectedResult = new User();
+        expectedResult.setFirstName("san");
+        expectedResult.setEmail("test@gmail.com");
+        expectedResult.setLastName("Zhang");
+        userDao.save(expectedResult);
+//        sessionFactory.getCurrentSession().flush();
+        logger.debug("the user first name is: " + expectedResult.getFirstName());
+
+        User actualResult = userDao.findByFirstName(expectedResult.getFirstName());
+        System.out.println(actualResult.getFirstName());
+
+        //assertNotNull(actualResult);
         assertEquals(expectedResult, actualResult);
 
     }
