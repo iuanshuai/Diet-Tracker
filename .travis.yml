@@ -4,12 +4,10 @@ jdk:
 services:
   - postgresql
   - docker
-before_install:
+before_script:
   - docker pull postgres
   - docker run --name testDB -e POSTGRES_DB=test -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=password -p 5430:5432 -d postgres
-  - mysql -u root < server/src/main/resources/data.sql
+  - "psql -c 'create database myapp_test;' -U postgres"
   - mvn clean compile flyway:migrate -P unit -Ddb_username=admin -Ddb_password=password
-install:
-  - mvn clean compile
 script:
-  - mvn clean compile
+  - mvn test -Dspring.profiles.active=dev -Ddatabase.serverName=jdbc:postgresql://localhost:5430/diettracker_unit -Ddatabase.username=admin -Ddatabase.password=password
