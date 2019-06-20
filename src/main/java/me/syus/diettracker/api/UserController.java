@@ -37,14 +37,14 @@ public class UserController {
 
 
     // /api/users/5  /object/object_id
-    @RequestMapping(value="/{Id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{Id}", method = RequestMethod.GET)
     public User getUserById(@PathVariable("Id") Long Id) {
         logger.debug("find users id: " + Id);
         return userDao.findById(Id);
     }
 
     // /api/users?username=seany
-    @RequestMapping(value="", method = RequestMethod.GET, params = "id")
+    @RequestMapping(value = "", method = RequestMethod.GET, params = "id")
     public User getUserByUsername(@RequestParam("id") Long id) {
         logger.debug("find users by id: " + id);
         return userDao.findById(id);
@@ -52,9 +52,17 @@ public class UserController {
 
     // /api/users?firstname=seany
     @RequestMapping(value = "", method = RequestMethod.GET, params = "firstname")
-    public User getUserByFirstName(@RequestParam("firstname") String firstName) {
+    public List getUserByFirstName(@RequestParam("firstname") String firstName) {
         logger.debug("find users by firstname: " + firstName);
         return userDao.findByFirstName(firstName);
+
+    }
+
+    // /api/users?lastname=seany
+    @RequestMapping(value = "", method = RequestMethod.GET, params = "lastname")
+    public List getUserByLastName(@RequestParam("lastname") String lastName) {
+        logger.debug("find users by lastname: " + lastName);
+        return userDao.findByLastName(lastName);
 
     }
 

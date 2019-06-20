@@ -3,7 +3,6 @@ package me.syus.diettracker.repository;
 import me.syus.diettracker.config.AppConfig;
 import me.syus.diettracker.domain.Food;
 import me.syus.diettracker.domain.Image;
-import me.syus.diettracker.domain.User;
 import org.hibernate.SessionFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,7 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import static junit.framework.TestCase.*;
+import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertNotNull;
 
 
 @ContextConfiguration(classes = {AppConfig.class})

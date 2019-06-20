@@ -14,7 +14,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import static junit.framework.TestCase.*;
+import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertNotNull;
 
 
 @ContextConfiguration(classes = {AppConfig.class})
@@ -50,6 +51,7 @@ public class UserDaoTest {
     @Test
     @Transactional // after doing unit test, roll back
     public void findByFirstNameTest() {
+
         User expectedResult = new User();
         expectedResult.setFirstName("san");
         expectedResult.setEmail("test@gmail.com");
@@ -58,11 +60,25 @@ public class UserDaoTest {
 //        sessionFactory.getCurrentSession().flush();
         logger.debug("the user first name is: " + expectedResult.getFirstName());
 
-        User actualResult = userDao.findByFirstName(expectedResult.getFirstName());
-        System.out.println(actualResult.getFirstName());
-
+        User actualResult = userDao.findByFirstName(expectedResult.getFirstName()).get(0);
         //assertNotNull(actualResult);
         assertEquals(expectedResult, actualResult);
 
     }
+
+    @Test
+    @Transactional
+    public void findByLastNameTest() {
+        User expectedResult = new User();
+        expectedResult.setFirstName("hhh");
+        expectedResult.setEmail("test@gmail.com");
+        expectedResult.setLastName("aaa");
+        userDao.save(expectedResult);
+        logger.debug("the user last name is: " + expectedResult.getLastName());
+        User actualResult = userDao.findByLastName(expectedResult.getLastName()).get(0);
+        assertEquals(expectedResult, actualResult);
+    }
+
+
+
 }

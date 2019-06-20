@@ -1,4 +1,7 @@
 # Diet-Tracker
+[![Apache License, Version 2.0, January 2004](https://img.shields.io/github/license/iuanshuai/Diet-Tracker.svg?label=License)][license]
+
+
 
 Frameworks and Tools
 -----------------------------------
@@ -24,8 +27,5 @@ Code Generator for MyBatis
 
 About
 -----------------------------------
-<<<<<<< HEAD
+
 * [Github link](https://github.com/iuanshuai)
-=======
-* [Github link](https://github.com/iuanshuai)
->>>>>>> 1bb687c3f85e063ad8213928a0ee76c4d8077c0c

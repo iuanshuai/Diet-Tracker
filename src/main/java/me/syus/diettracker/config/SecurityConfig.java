@@ -45,6 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests().antMatchers("/api/**").hasAnyRole("REGISTERED_USER","ADMIN")
                 .and()
                 .exceptionHandling().authenticationEntryPoint(restAuthenticationEntryPoint);
+
     }
 
 
