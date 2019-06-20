@@ -83,17 +83,26 @@ public class UserDaoImpl extends CRUDDaoImpl<User, Long> implements UserDao {
         Session s = sessionFactory.getCurrentSession();
         TypedQuery<User> query = s.createQuery(hql);
         query.setParameter("firstName2", firstName);
-        List<User> users;
-        try {
-            users = query.getResultList();
-
-        } catch (Exception e) {
-            users = null;
-
-        }
-        return users;
+        return getResultListFromHql(query);
     }
 
+    @Override
+    @Transactional
+    public User findByUsername(String username) {
+        String hql = "FROM User u where u.username = :username";
+        Session s = sessionFactory.getCurrentSession();
+        TypedQuery<User> query = s.createQuery(hql);
+        query.setParameter("username", username);
+        User user;
+        try {
+            user = query.getSingleResult();
+
+        } catch (Exception e) {
+            user = null;
+
+        }
+        return user;
+    }
 
     @Override
     @Transactional
@@ -102,6 +111,10 @@ public class UserDaoImpl extends CRUDDaoImpl<User, Long> implements UserDao {
         Session s = sessionFactory.getCurrentSession();
         TypedQuery<User> query = s.createQuery(hql);
         query.setParameter("lastName2", lastName);
+        return getResultListFromHql(query);
+    }
+
+    private List<User> getResultListFromHql(TypedQuery<User> query){
         List<User> users;
         try {
             users = query.getResultList();

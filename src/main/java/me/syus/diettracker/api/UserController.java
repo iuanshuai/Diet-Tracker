@@ -20,6 +20,8 @@ public class UserController {
 
     @Autowired
     private UserDao userDao;
+    @Autowired
+    //TODO replace userDao operation
     private UserService userService;
 
     // /api/users GET
@@ -51,16 +53,16 @@ public class UserController {
     }
 
     // /api/users?firstname=seany
-    @RequestMapping(value = "", method = RequestMethod.GET, params = "firstname")
-    public List getUserByFirstName(@RequestParam("firstname") String firstName) {
+    @RequestMapping(value = "", method = RequestMethod.GET, params = "first_name")
+    public List<User> getUserByFirstName(@RequestParam("first_name") String firstName) {
         logger.debug("find users by firstname: " + firstName);
         return userDao.findByFirstName(firstName);
 
     }
 
     // /api/users?lastname=seany
-    @RequestMapping(value = "", method = RequestMethod.GET, params = "lastname")
-    public List getUserByLastName(@RequestParam("lastname") String lastName) {
+    @RequestMapping(value = "", method = RequestMethod.GET, params = "last_name")
+    public List<User> getUserByLastName(@RequestParam("last_name") String lastName) {
         logger.debug("find users by lastname: " + lastName);
         return userDao.findByLastName(lastName);
 

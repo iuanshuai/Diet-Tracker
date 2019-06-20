@@ -15,6 +15,8 @@ public class User {
     @SequenceGenerator(name = "users_id_seq1", sequenceName = "users_id_seq", allocationSize = 1)
     private Long Id;
     @Column
+    private String username;
+    @Column
     private String email;
     @Column(name = "last_name")
     private String lastName;
@@ -48,5 +50,13 @@ public class User {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

@@ -37,6 +37,7 @@ public class FoodDaoImpl implements CRUDDao<Food, Long> , FoodDao {
     }
 
     @Override
+    //TODO write unit test for it
     public Food findByIdEager(Long id) {
         String hql = "FROM Food f LEFT JOIN FETCH f.images where f.id = :foodId";
         Session s = sessionFactory.getCurrentSession();

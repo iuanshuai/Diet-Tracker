@@ -1,5 +1,6 @@
 package me.syus.diettracker.repository;
 
+import me.syus.diettracker.Service.UserService;
 import me.syus.diettracker.config.AppConfig;
 import me.syus.diettracker.domain.User;
 import org.hibernate.SessionFactory;
@@ -25,7 +26,7 @@ import static junit.framework.TestCase.assertNotNull;
 
 public class UserDaoTest {
     @Autowired
-    private UserDao userDao;
+    private UserService userService;
     @Autowired
     private SessionFactory sessionFactory;
 
@@ -35,12 +36,13 @@ public class UserDaoTest {
     @Transactional // after doing unit test, roll back
     public void findByIdTest() {
         User expectedResult = new User();
+        expectedResult.setUsername("sanzhang002");
         expectedResult.setFirstName("san");
         expectedResult.setEmail("test@gmail.com");
         expectedResult.setLastName("Zhang");
-        userDao.save(expectedResult);
+        userService.save(expectedResult);
         logger.debug("the user id is: " + expectedResult.getId());
-        User actualResult = userDao.findById(expectedResult.getId());
+        User actualResult = userService.findById(expectedResult.getId());
 
         assertNotNull(actualResult);
         assertEquals(expectedResult, actualResult);
@@ -53,14 +55,15 @@ public class UserDaoTest {
     public void findByFirstNameTest() {
 
         User expectedResult = new User();
+        expectedResult.setUsername("sanzhang001");
         expectedResult.setFirstName("san");
         expectedResult.setEmail("test@gmail.com");
         expectedResult.setLastName("Zhang");
-        userDao.save(expectedResult);
+        userService.save(expectedResult);
 //        sessionFactory.getCurrentSession().flush();
         logger.debug("the user first name is: " + expectedResult.getFirstName());
 
-        User actualResult = userDao.findByFirstName(expectedResult.getFirstName()).get(0);
+        User actualResult = userService.findByFirstName(expectedResult.getFirstName()).get(0);
         //assertNotNull(actualResult);
         assertEquals(expectedResult, actualResult);
 
@@ -70,12 +73,13 @@ public class UserDaoTest {
     @Transactional
     public void findByLastNameTest() {
         User expectedResult = new User();
+        expectedResult.setUsername("aaahhh001");
         expectedResult.setFirstName("hhh");
         expectedResult.setEmail("test@gmail.com");
         expectedResult.setLastName("aaa");
-        userDao.save(expectedResult);
+        userService.save(expectedResult);
         logger.debug("the user last name is: " + expectedResult.getLastName());
-        User actualResult = userDao.findByLastName(expectedResult.getLastName()).get(0);
+        User actualResult = userService.findByLastName(expectedResult.getLastName()).get(0);
         assertEquals(expectedResult, actualResult);
     }
 
