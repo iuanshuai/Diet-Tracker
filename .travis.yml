@@ -1,4 +1,15 @@
 language: java
-
 jdk:
-  - oraclejdk8
+  - openjdk8
+services:
+  - postgresql
+  - docker
+before_install:
+  - docker pull postgres
+  - docker run --name testDB -e POSTGRES_DB=test -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=password -p 5430:5432 -d postgres
+  - mysql -u root < server/src/main/resources/data.sql
+  - mvn clean compile flyway:migrate -P unit -Ddb_username=admin -Ddb_password=password
+install:
+  - mvn clean compile
+script:
+  - mvn clean compile
