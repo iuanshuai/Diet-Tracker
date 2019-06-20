@@ -7,25 +7,26 @@
 
 Frameworks and Tools
 -----------------------------------
-* Java&IDE: JDK8 IntelliJ
-* Backend:  SpringMVC3.2.9 Spring3.2.9 \(Configured by annotation)
-* Database: Postgres
-* Web Server: Tomcat 7
-* Build Tool: Maven
-* Other: Druid(database connection pool) JUnit Log4j Jackson FastJson
+* Java & IDE: JDK 8 IntelliJ
+* Back-end:  SpringMVC3.2.9 Spring3.2.9 \(Configured by annotation)
+* [Spring Security](https://spring.io/projects/spring-security)
+* [Postgres](https://www.postgresql.org)
+* [Flyway](https://flywaydb.org/)
+* [Tomcat](https://tomcat.apache.org/download-70.cgi)
+* [Maven](https://maven.apache.org)
+* [JUnit](http://junit.org/)
 
 System Features
 -----------------------------------
-* Integration of Spring core, Spring MVC, and MyBatis
+* Integration of Spring core, Spring MVC
 * Management of users through CRUD interface
 
-Code Generator for MyBatis
+Build & Installation
 -----------------------------------
-* You can find code generator from [the link](http://mybatis.github.io/generator/)
-* In the folder of mybatis-generator, you can find generator.xml and mybatis-generator-core-1.3.2.jar. 
-* Download these two files in the folder of C:\mybatis, and run the following command:
-  java -jar mybatis-generator-core-1.3.2.jar -configfile generator.xml -overwrite
-* Then Java POJOs that match the table structure will be generated.
+* Install and run [PostgreSQL](hhttps://www.postgresql.org).
+* Clone the repository and switch to the directory.
+* Run `mvn clean install`.
+* Deploy the `war` file in `target` to a application server of your choice (e.g. [Apache Tomcat](http://tomcat.apache.org/)).
 
 About
 -----------------------------------
