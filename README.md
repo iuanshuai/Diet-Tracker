@@ -1,4 +1,5 @@
 # Diet-Tracker
+[![Build Status](https://travis-ci.com/iuanshuai/Diet-Tracker.svg?branch=master)](https://travis-ci.com/iuanshuai/Diet-Tracker)
 ![Apache License, Version 2.0, January 2004](https://img.shields.io/github/license/iuanshuai/Diet-Tracker.svg?label=License)
 ![](https://img.shields.io/badge/Java-1.8-green.svg)
 
