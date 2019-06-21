@@ -8,13 +8,13 @@
     <name>Diet-Trackers</name>
 
     <properties>
-        <spring.version>5.0.6.RELEASE</spring.version>
+        <spring.version>5.1.2.RELEASE</spring.version>
         <hibernate.version>5.3.1.Final</hibernate.version>
         <flyway.version>5.2.4</flyway.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <org.slf4j-version>1.7.25</org.slf4j-version>
-        <fasterxml-jackson.version>2.9.5</fasterxml-jackson.version>
+        <fasterxml-jackson.version>2.9.9</fasterxml-jackson.version>
     </properties>
 
 
