@@ -49,6 +49,18 @@ public class UserDaoTest {
 
     }
 
+    @Test
+    @Transactional
+    public void findByUsernameTest() {
+        User expectResult = new User();
+        expectResult.setUsername("testuser001");
+        expectResult.setFirstName("Hung");
+        expectResult.setLastName("John");
+        expectResult.setEmail("test@icloud.com");
+        userService.save(expectResult);
+        User actualResult = userService.findByUsername(expectResult.getUsername());
+        assertEquals(expectResult, actualResult);
+    }
 
     @Test
     @Transactional // after doing unit test, roll back
