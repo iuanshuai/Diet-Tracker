@@ -56,6 +56,7 @@ public class UserDaoTest {
         expectResult.setUsername("testuser001");
         expectResult.setFirstName("Hung");
         expectResult.setLastName("John");
+        expectResult.setPassword("aaa");
         expectResult.setEmail("test@icloud.com");
         userService.save(expectResult);
         User actualResult = userService.findByUsername(expectResult.getUsername());
@@ -70,6 +71,7 @@ public class UserDaoTest {
         expectedResult.setUsername("sanzhang001");
         expectedResult.setFirstName("san");
         expectedResult.setEmail("test@gmail.com");
+        expectedResult.setPassword("aaa");
         expectedResult.setLastName("Zhang");
         userService.save(expectedResult);
 //        sessionFactory.getCurrentSession().flush();
@@ -89,6 +91,7 @@ public class UserDaoTest {
         expectedResult.setFirstName("hhh");
         expectedResult.setEmail("test@gmail.com");
         expectedResult.setLastName("aaa");
+        expectedResult.setPassword("aaa");
         userService.save(expectedResult);
         logger.debug("the user last name is: " + expectedResult.getLastName());
         User actualResult = userService.findByLastName(expectedResult.getLastName()).get(0);
