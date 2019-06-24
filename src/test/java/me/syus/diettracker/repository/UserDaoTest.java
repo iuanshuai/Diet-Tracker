@@ -40,6 +40,7 @@ public class UserDaoTest {
         expectedResult.setFirstName("san");
         expectedResult.setEmail("test@gmail.com");
         expectedResult.setLastName("Zhang");
+        expectedResult.setPassword("abc123");
         userService.save(expectedResult);
         logger.debug("the user id is: " + expectedResult.getId());
         User actualResult = userService.findById(expectedResult.getId());
