@@ -3,7 +3,6 @@ package me.syus.diettracker.repository;
 import me.syus.diettracker.Service.UserService;
 import me.syus.diettracker.config.AppConfig;
 import me.syus.diettracker.domain.User;
-import me.syus.diettracker.extend.exp.NotFoundException;
 import me.syus.diettracker.extend.security.UserDetailsServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
