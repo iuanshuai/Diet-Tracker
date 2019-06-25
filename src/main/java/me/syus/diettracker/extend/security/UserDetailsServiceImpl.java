@@ -11,7 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserDetailServiceImpl implements UserDetailsService {
+public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private UserService userService;
     private final Logger logger = LoggerFactory.getLogger(getClass());
@@ -21,7 +21,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
         logger.debug(s + " is trying to login from spring security");
         User domainUser = null;
         try {
-            domainUser = userService.findByUsername(s);
+            domainUser = userService.findByEmailOrUsername(s);
         } catch (Exception repositoryProblem) {
             logger.debug("catch AuthenticationServiceException from AuthenticationProvider");
         }

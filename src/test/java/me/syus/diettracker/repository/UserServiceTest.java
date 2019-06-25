@@ -3,6 +3,7 @@ package me.syus.diettracker.repository;
 import me.syus.diettracker.Service.UserService;
 import me.syus.diettracker.config.AppConfig;
 import me.syus.diettracker.domain.User;
+import me.syus.diettracker.extend.exp.NotFoundException;
 import org.hibernate.SessionFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -101,7 +102,7 @@ public class UserServiceTest {
 
     @Test
     @Transactional
-    public void findByEmailOrUsernameTest() {
+    public void findByEmailOrUsernameTest() throws NotFoundException {
         User exceptedResult = new User();
         exceptedResult.setUsername("zhangsan");
         exceptedResult.setFirstName("Sanl");
