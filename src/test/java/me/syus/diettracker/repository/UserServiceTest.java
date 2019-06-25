@@ -51,54 +51,6 @@ public class UserServiceTest {
 
     }
 
-    @Test
-    @Transactional
-    public void findByUsernameTest() {
-        User expectResult = new User();
-        expectResult.setUsername("testuser001");
-        expectResult.setFirstName("Hung");
-        expectResult.setLastName("John");
-        expectResult.setPassword("aaa");
-        expectResult.setEmail("test@icloud.com");
-        userService.save(expectResult);
-        User actualResult = userService.findByUsername(expectResult.getUsername());
-        assertEquals(expectResult, actualResult);
-    }
-
-    @Test
-    @Transactional // after doing unit test, roll back
-    public void findByFirstNameTest() {
-
-        User expectedResult = new User();
-        expectedResult.setUsername("sanzhang001");
-        expectedResult.setFirstName("san");
-        expectedResult.setEmail("test@gmail.com");
-        expectedResult.setPassword("aaa");
-        expectedResult.setLastName("Zhang");
-        userService.save(expectedResult);
-//        sessionFactory.getCurrentSession().flush();
-        logger.debug("the user first name is: " + expectedResult.getFirstName());
-
-        User actualResult = userService.findByFirstName(expectedResult.getFirstName()).get(0);
-        //assertNotNull(actualResult);
-        assertEquals(expectedResult, actualResult);
-
-    }
-
-    @Test
-    @Transactional
-    public void findByLastNameTest() {
-        User expectedResult = new User();
-        expectedResult.setUsername("aaahhh001");
-        expectedResult.setFirstName("hhh");
-        expectedResult.setEmail("test@gmail.com");
-        expectedResult.setLastName("aaa");
-        expectedResult.setPassword("aaa");
-        userService.save(expectedResult);
-        logger.debug("the user last name is: " + expectedResult.getLastName());
-        User actualResult = userService.findByLastName(expectedResult.getLastName()).get(0);
-        assertEquals(expectedResult, actualResult);
-    }
 
     @Test
     @Transactional
