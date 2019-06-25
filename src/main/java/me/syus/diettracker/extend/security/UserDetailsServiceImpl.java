@@ -23,7 +23,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         try {
             domainUser = userService.findByEmailOrUsername(s);
         } catch (Exception repositoryProblem) {
-            logger.debug("catch AuthenticationServiceException from AuthenticationProvider");
+            logger.debug("catch AuthenticationServiceException from AuthenticationProvider",repositoryProblem);
+            throw new UsernameNotFoundException("can't find user record from:"+s);
         }
         return domainUser;
     }

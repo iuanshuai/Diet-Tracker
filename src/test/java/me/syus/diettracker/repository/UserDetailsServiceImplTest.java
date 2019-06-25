@@ -3,6 +3,7 @@ package me.syus.diettracker.repository;
 import me.syus.diettracker.Service.UserService;
 import me.syus.diettracker.config.AppConfig;
 import me.syus.diettracker.domain.User;
+import me.syus.diettracker.extend.exp.NotFoundException;
 import me.syus.diettracker.extend.security.UserDetailsServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -24,7 +26,7 @@ import static junit.framework.TestCase.assertEquals;
 @WebAppConfiguration
 
 
-public class LoginTest {
+public class UserDetailsServiceImplTest {
     @Autowired
     private UserService userService;
     @Autowired
@@ -34,7 +36,7 @@ public class LoginTest {
 
     @Test
     @Transactional
-    public void loginTest() {
+    public void loadUserByUsernameTest() {
 
         User expectedResult = new User();
         expectedResult.setUsername("sanzhangd002");
@@ -49,6 +51,12 @@ public class LoginTest {
 
         assertEquals(expectedResult, actualResult);
         assertEquals(expectedResult, actualResult2);
+
+    }
+
+    @Test(expected = UsernameNotFoundException.class)
+    public void loadUserByUsernameExpTest() {
+        userDetailsServiceImpl.loadUserByUsername("");
 
     }
 
