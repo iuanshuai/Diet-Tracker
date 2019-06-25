@@ -88,8 +88,24 @@ public class UserDaoImpl extends CRUDDaoImpl<User, Long> implements UserDao {
 
     @Override
     @Transactional
-    public User findByUsername(String username) {
-        String hql = "FROM User u where u.username = :username";
+    public User findByEmailIgnoreCase(String email) {
+        String hql = "FROM User u where lower(u.email) = lower(:email)";
+        Session s = sessionFactory.getCurrentSession();
+        TypedQuery<User> query = s.createQuery(hql);
+        query.setParameter("email", email);
+        User user;
+        try {
+            user = query.getSingleResult();
+        } catch (Exception e) {
+            user = null;
+        }
+        return user;
+    }
+
+    @Override
+    @Transactional
+    public User findByUsernameIgnoreCase(String username) {
+        String hql = "FROM User u where lower(u.username) = lower(:username)";
         Session s = sessionFactory.getCurrentSession();
         TypedQuery<User> query = s.createQuery(hql);
         query.setParameter("username", username);
@@ -103,6 +119,9 @@ public class UserDaoImpl extends CRUDDaoImpl<User, Long> implements UserDao {
         }
         return user;
     }
+
+
+
 
     @Override
     @Transactional

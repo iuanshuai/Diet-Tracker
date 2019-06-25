@@ -30,6 +30,12 @@ public class User implements UserDetails {
     @Column(name = "first_name")
     private String firstName;
 
+    private Boolean enabled = true;
+
+    private Boolean locked = false;
+
+    private Boolean expired = false;
+
     public Long getId() {
         return Id;
     }

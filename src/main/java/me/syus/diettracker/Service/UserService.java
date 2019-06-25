@@ -1,5 +1,6 @@
 package me.syus.diettracker.Service;
 
+import javassist.NotFoundException;
 import me.syus.diettracker.domain.User;
 import me.syus.diettracker.repository.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,7 @@ public class UserService {
     }
 
     public User findByUsername(String username) {
-        User user = userDao.findByUsername(username);
+        User user = userDao.findByUsernameIgnoreCase(username);
         return user;
     }
 
@@ -48,5 +49,20 @@ public class UserService {
         return users;
     }
 
+
+    public User findByEmailOrUsername(String keyword) throws NullPointerException{
+        if (keyword == null || "".equals(keyword.trim())) {
+            throw new NullPointerException("Search keyword is null");
+        }
+        User user = userDao.findByEmailIgnoreCase(keyword);
+        if (user == null) {
+            user = userDao.findByUsernameIgnoreCase(keyword);
+        }
+//        if (user == null) {
+//            throw new NotFoundException();
+//        }
+        return user;
+
+    }
 
 }

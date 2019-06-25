@@ -24,7 +24,7 @@ import static junit.framework.TestCase.assertNotNull;
 @ActiveProfiles("unit")
 @WebAppConfiguration
 
-public class UserDaoTest {
+public class UserServiceTest {
     @Autowired
     private UserService userService;
     @Autowired
@@ -99,6 +99,22 @@ public class UserDaoTest {
         assertEquals(expectedResult, actualResult);
     }
 
+    @Test
+    @Transactional
+    public void findByEmailOrUsernameTest() {
+        User exceptedResult = new User();
+        exceptedResult.setUsername("zhangsan");
+        exceptedResult.setFirstName("Sanl");
+        exceptedResult.setLastName("HKdd");
+        exceptedResult.setEmail("zs@gmail.com");
+        exceptedResult.setPassword("akjdfd");
+        userService.save(exceptedResult);
+        User actualResult = userService.findByEmailOrUsername(exceptedResult.getEmail());
+        assertEquals(exceptedResult, actualResult);
+
+        User actualResult2 = userService.findByEmailOrUsername(exceptedResult.getUsername());
+        assertEquals(exceptedResult, actualResult2);
+    }
 
 
 }
