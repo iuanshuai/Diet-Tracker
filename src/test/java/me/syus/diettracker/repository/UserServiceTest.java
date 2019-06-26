@@ -30,6 +30,8 @@ public class UserServiceTest {
     private UserService userService;
     @Autowired
     private SessionFactory sessionFactory;
+    @Autowired
+    private AuthorityRepository authorityRepository;
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -70,18 +72,20 @@ public class UserServiceTest {
     }
 
 
-//    @Test
-//    @Transactional
-//    public void createUserTest() {
-//        User exceptedResult = new User();
-//        exceptedResult.setUsername("zhangsan");
-//        exceptedResult.setFirstName("Sanl");
-//        exceptedResult.setLastName("HKdd");
-//        exceptedResult.setEmail("zs@gmail.com");
-//        exceptedResult.setPassword("akjdfd");
-//        userService.createUser(exceptedResult);
-//        User actualResult = userService.findByEmailOrUsername(exceptedResult.getEmail());
-//        assertFalse(exceptedResult.getPassword() == actualResult.getPassword());
-//    }
+    @Test
+    @Transactional
+    public void createUserTest() {
+        // Test if the new user has the default role
+        String expectedResult = "ROLE_REGISTERED_USER";
+        User actualResult = new User();
+        actualResult.setUsername("zhangsan");
+        actualResult.setFirstName("Sanl");
+        actualResult.setLastName("HKdd");
+        actualResult.setEmail("zs@gmail.com");
+        actualResult.setPassword("akjdfd");
+        userService.createUser(actualResult);
+
+        assertEquals(expectedResult, authorityRepository.findAuthoritiesByUserId(actualResult.getId()).get(0).getAuthority());
+    }
 
 }

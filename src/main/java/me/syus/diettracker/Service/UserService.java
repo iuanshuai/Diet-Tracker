@@ -62,6 +62,10 @@ public class UserService {
         String encodedPass = encoder.encode(newUser.getPassword());
         newUser.setPassword(encodedPass);
         userDao.save(newUser);
+        Authority a = new Authority();
+        a.setUser(newUser);
+        a.setAuthority("ROLE_REGISTERED_USER");
+        authorityRepository.save(a);
         return newUser;
 
     }

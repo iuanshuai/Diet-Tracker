@@ -8,7 +8,7 @@
     <name>Diet-Trackers</name>
 
     <properties>
-        <spring.version>[5.1.5,)</spring.version>
+        <spring.version>5.1.5.RELEASE</spring.version>
         <hibernate.version>5.3.1.Final</hibernate.version>
         <flyway.version>5.2.4</flyway.version>
         <maven.compiler.source>1.8</maven.compiler.source>
