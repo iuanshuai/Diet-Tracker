@@ -40,6 +40,10 @@ public class User implements UserDetails {
     @JsonIgnore
     private Boolean expired = false;
 
+    @Transient
+    @JsonIgnore
+    private Collection<? extends GrantedAuthority> authorities;
+
     public Long getId() {
         return Id;
     }
@@ -52,12 +56,12 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return true;
+        return !expired;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return !locked;
     }
 
     @Override
@@ -67,12 +71,16 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return enabled;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return authorities;
+    }
+
+    public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
+        this.authorities = authorities;
     }
 
     public String getLastName() {

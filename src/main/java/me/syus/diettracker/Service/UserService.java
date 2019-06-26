@@ -1,14 +1,16 @@
 package me.syus.diettracker.Service;
 
+import me.syus.diettracker.domain.Authority;
 import me.syus.diettracker.domain.User;
 import me.syus.diettracker.extend.exp.NotFoundException;
+import me.syus.diettracker.repository.AuthorityRepository;
 import me.syus.diettracker.repository.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.UUID;
 
 
 @Service
@@ -16,7 +18,8 @@ public class UserService {
 
     @Autowired
     private UserDao userDao;
-
+    @Autowired
+    private AuthorityRepository authorityRepository;
 
 
     public User save(User user) {
@@ -52,6 +55,7 @@ public class UserService {
         return users;
     }
 
+    @Transactional
     public User createUser(User newUser) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         // String code = UUID.randomUUID().toString();
@@ -74,7 +78,22 @@ public class UserService {
         if (user == null) {
             throw new NotFoundException();
         }
+
+
         return user;
+    }
+
+
+    @Transactional
+    public Authority addAuthority(User user, String authorityString) {
+        Authority userAuthority = new Authority(user, authorityString);
+        return authorityRepository.save(userAuthority);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Authority> findAuthorities(User user) {
+        List<Authority> roles = authorityRepository.findAuthoritiesByUserId(user.getId());
+        return roles;
     }
 
 }

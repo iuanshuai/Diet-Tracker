@@ -1,9 +1,6 @@
 package me.syus.diettracker.api;
-
-
 import me.syus.diettracker.Service.UserService;
 import me.syus.diettracker.domain.User;
-import me.syus.diettracker.repository.UserDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,21 +15,19 @@ import java.util.List;
 public class UserController {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
+
     @Autowired
-    private UserDao userDao;
-    @Autowired
-    //TODO replace userDao operation
     private UserService userService;
 
     // /api/users GET
     @RequestMapping(value = "", method = RequestMethod.GET)
     public List getUserList() {
         logger.debug("list users");
-        return userDao.findAll();
+        return userService.findAll();
     }
 
     // /api/users POST
-    @RequestMapping(value = "", method = RequestMethod.POST)
+    @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public User addUser(@RequestBody User u) {
         userService.createUser(u);
         return u;
@@ -43,21 +38,21 @@ public class UserController {
     @RequestMapping(value = "/{Id}", method = RequestMethod.GET)
     public User getUserById(@PathVariable("Id") Long Id) {
         logger.debug("find users id: " + Id);
-        return userDao.findById(Id);
+        return userService.findById(Id);
     }
 
     // /api/users?username=seany
     @RequestMapping(value = "", method = RequestMethod.GET, params = "id")
     public User getUserByUsername(@RequestParam("id") Long id) {
         logger.debug("find users by id: " + id);
-        return userDao.findById(id);
+        return userService.findById(id);
     }
 
     // /api/users?firstname=seany
     @RequestMapping(value = "", method = RequestMethod.GET, params = "first_name")
     public List<User> getUserByFirstName(@RequestParam("first_name") String firstName) {
         logger.debug("find users by firstname: " + firstName);
-        return userDao.findByFirstName(firstName);
+        return userService.findByFirstName(firstName);
 
     }
 
@@ -65,7 +60,7 @@ public class UserController {
     @RequestMapping(value = "", method = RequestMethod.GET, params = "last_name")
     public List<User> getUserByLastName(@RequestParam("last_name") String lastName) {
         logger.debug("find users by lastname: " + lastName);
-        return userDao.findByLastName(lastName);
+        return userService.findByLastName(lastName);
 
     }
 
