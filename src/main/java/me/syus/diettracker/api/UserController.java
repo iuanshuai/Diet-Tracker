@@ -34,7 +34,8 @@ public class UserController {
     // /api/users POST
     @RequestMapping(value = "", method = RequestMethod.POST)
     public User addUser(@RequestBody User u) {
-        return userDao.save(u);
+        userService.createUser(u);
+        return u;
     }
 
 

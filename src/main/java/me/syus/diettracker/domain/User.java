@@ -1,5 +1,6 @@
 package me.syus.diettracker.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -30,10 +31,13 @@ public class User implements UserDetails {
     @Column(name = "first_name")
     private String firstName;
 
+    @JsonIgnore
     private Boolean enabled = true;
 
+    @JsonIgnore
     private Boolean locked = false;
 
+    @JsonIgnore
     private Boolean expired = false;
 
     public Long getId() {

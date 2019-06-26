@@ -4,9 +4,11 @@ import me.syus.diettracker.domain.User;
 import me.syus.diettracker.extend.exp.NotFoundException;
 import me.syus.diettracker.repository.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 
 @Service
@@ -14,6 +16,7 @@ public class UserService {
 
     @Autowired
     private UserDao userDao;
+
 
 
     public User save(User user) {
@@ -49,6 +52,16 @@ public class UserService {
         return users;
     }
 
+    public User createUser(User newUser) {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        // String code = UUID.randomUUID().toString();
+        String encodedPass = encoder.encode(newUser.getPassword());
+        newUser.setPassword(encodedPass);
+        userDao.save(newUser);
+        return newUser;
+
+    }
+
 
     public User findByEmailOrUsername(String keyword) throws NullPointerException, NotFoundException {
         if (keyword == null || "".equals(keyword.trim())) {
@@ -62,7 +75,6 @@ public class UserService {
             throw new NotFoundException();
         }
         return user;
-
     }
 
 }

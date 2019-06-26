@@ -16,6 +16,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
+import static junit.framework.Assert.assertFalse;
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNotNull;
 
@@ -69,5 +70,19 @@ public class UserServiceTest {
         assertEquals(exceptedResult, actualResult2);
     }
 
+
+//    @Test
+//    @Transactional
+//    public void createUserTest() {
+//        User exceptedResult = new User();
+//        exceptedResult.setUsername("zhangsan");
+//        exceptedResult.setFirstName("Sanl");
+//        exceptedResult.setLastName("HKdd");
+//        exceptedResult.setEmail("zs@gmail.com");
+//        exceptedResult.setPassword("akjdfd");
+//        userService.createUser(exceptedResult);
+//        User actualResult = userService.findByEmailOrUsername(exceptedResult.getEmail());
+//        assertFalse(exceptedResult.getPassword() == actualResult.getPassword());
+//    }
 
 }
