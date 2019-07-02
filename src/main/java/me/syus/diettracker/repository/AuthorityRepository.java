@@ -4,14 +4,16 @@ import me.syus.diettracker.domain.Authority;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-@Service
+@Repository
 public class AuthorityRepository {
+
+    // Todo revise the authority dao interface
 
     @Autowired
     private SessionFactory sessionFactory;

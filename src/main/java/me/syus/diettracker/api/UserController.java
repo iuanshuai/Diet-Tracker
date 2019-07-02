@@ -1,9 +1,18 @@
 package me.syus.diettracker.api;
 import me.syus.diettracker.Service.UserService;
 import me.syus.diettracker.domain.User;
+import me.syus.diettracker.extend.exp.NotFoundException;
+import me.syus.diettracker.extend.security.JwtTokenUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.config.BeanIds;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +27,39 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    @Qualifier(BeanIds.AUTHENTICATION_MANAGER)
+    private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private JwtTokenUtil jwtTokenUtil;
+
+    @RequestMapping(value="/login", method = RequestMethod.POST)
+    public String login(@RequestBody User user) {
+        logger.info("username:" + user.getUsername());
+        logger.info("password:" + user.getPassword());
+        UsernamePasswordAuthenticationToken notfullyAuthentication = new UsernamePasswordAuthenticationToken(
+                user.getUsername(),
+                user.getPassword()
+        );
+        try {
+            final Authentication authentication = authenticationManager.authenticate(notfullyAuthentication);
+            try {
+                UserDetails ud = userService.findByEmailOrUsername(user.getUsername());
+                String token = jwtTokenUtil.generateToken(ud);
+                return token;
+            } catch (NotFoundException e) {
+                e.printStackTrace();
+            }
+        } catch (AuthenticationException ae) {
+            logger.debug("authentication failure");
+        }
+        return null;
+
+    }
+
+
 
     // /api/users GET
     @RequestMapping(value = "", method = RequestMethod.GET)
