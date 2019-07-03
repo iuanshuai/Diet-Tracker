@@ -35,6 +35,7 @@ public class UserController {
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
+    // /api/users/login POST
     @RequestMapping(value="/login", method = RequestMethod.POST)
     public String login(@RequestBody User user) {
         logger.info("username:" + user.getUsername());
@@ -56,7 +57,6 @@ public class UserController {
             logger.debug("authentication failure");
         }
         return null;
-
     }
 
 
