@@ -40,7 +40,7 @@ public class UserDetailsServiceImplTest {
         User expectedResult = new User();
         expectedResult.setUsername("sanzhangd002");
         expectedResult.setFirstName("san");
-        expectedResult.setEmail("test@gmail.com");
+        expectedResult.setEmail("test2@gmail.com");
         expectedResult.setLastName("Zhang");
         expectedResult.setPassword("abc123");
         userService.save(expectedResult);
