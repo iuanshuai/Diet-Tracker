@@ -16,15 +16,15 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RequestMapping(value = {"/api/users", "/api/user"}) // all the requests from "/api/users & user" will be listened
 @Controller
 @ResponseBody // return a data format
 public class UserController {
     private final Logger logger = LoggerFactory.getLogger(getClass());
-
-
     @Autowired
     private UserService userService;
 
@@ -36,8 +36,10 @@ public class UserController {
     private JwtTokenUtil jwtTokenUtil;
 
     // /api/users/login POST
+    //@ResponseBody
     @RequestMapping(value="/login", method = RequestMethod.POST)
-    public String login(@RequestBody User user) {
+    public Map<String, String> login(@RequestBody User user) {
+        Map<String, String> map = new HashMap<>();
         logger.info("username:" + user.getUsername());
         logger.info("password:" + user.getPassword());
         UsernamePasswordAuthenticationToken notfullyAuthentication = new UsernamePasswordAuthenticationToken(
@@ -49,8 +51,10 @@ public class UserController {
             try {
                 UserDetails ud = userService.findByEmailOrUsername(user.getUsername());
                 String token = jwtTokenUtil.generateToken(ud);
-                return token;
+                map.put("token", token);
+                return map;
             } catch (NotFoundException e) {
+                logger.warn("cannot generate token");
                 e.printStackTrace();
             }
         } catch (AuthenticationException ae) {

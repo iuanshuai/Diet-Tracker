@@ -6,6 +6,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.converter.json.GsonBuilderUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
@@ -21,7 +22,7 @@ public class JwtTokenUtil {
     final String secret = "shuaige";
     final Long expiration = 86400L * 1000;
     private final Logger logger = LoggerFactory.getLogger(getClass());
-    //    private Long experication
+
 
     public String getUsernameFromToken(String token) {
         String username;
@@ -44,6 +45,15 @@ public class JwtTokenUtil {
 
     private String generateToken(Map<String, Object> claims) {
 
+//        Map<String, String> result = new HashMap<>();
+//        String token = Jwts.builder()
+//                .setClaims(claims)
+//                .setExpiration(generateExpireDate())
+//                .signWith(SignatureAlgorithm.HS512, secret)
+//                .compact();
+//        result.put("token", token);
+//        return new (result);
+        // TODO Convert token String to json format
         return Jwts.builder()
                 .setClaims(claims)
                 .setExpiration(generateExpireDate())

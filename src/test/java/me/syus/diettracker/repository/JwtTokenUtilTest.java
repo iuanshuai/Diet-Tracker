@@ -14,10 +14,8 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.transaction.annotation.Transactional;
 
 import static junit.framework.TestCase.assertEquals;
-import static junit.framework.TestCase.assertNotNull;
 
 @ContextConfiguration(classes = {AppConfig.class})
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -34,7 +32,6 @@ public class JwtTokenUtilTest {
     private JwtTokenUtil jwtTokenUtil;
 
     @Test
-    @Transactional
     public void generateTokenTest() {
 
         User user = new User();
@@ -44,13 +41,13 @@ public class JwtTokenUtilTest {
         user.setLastName("Zhang");
         user.setPassword("abc123");
         userService.save(user);
-        String actualResult = jwtTokenUtil.generateToken(userService.findByEmailOrUsername("unituser"));
+        String token = jwtTokenUtil.generateToken(userService.findByEmailOrUsername("unituser"));
+        String[] actualResult = token.split(".", 3);
 
-        assertNotNull(actualResult);
+        assertEquals(actualResult.length, 3);
     }
 
     @Test
-    @Transactional
     public void getUsernameFromTokenTest() {
         User user = new User();
         user.setUsername("unituser");
