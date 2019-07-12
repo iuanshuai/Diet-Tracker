@@ -22,10 +22,10 @@ import static junit.framework.TestCase.assertEquals;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ActiveProfiles("unit")
 @WebAppConfiguration
-public class AuthorityRepositoryTest {
+public class AuthorityDaoTest {
 
     @Autowired
-    private AuthorityRepository authorityRepository;
+    private AuthorityDao authorityDao;
 
     @Autowired
     private UserService userService;
@@ -46,9 +46,9 @@ public class AuthorityRepositoryTest {
         Authority a = new Authority();
         a.setAuthority("ROLE_REGISTERED_USER");
         a.setUser(u);
-        authorityRepository.save(a);
+        authorityDao.save(a);
         exceptedResult.add(a);
-        List<Authority> actualResult = authorityRepository.findAuthoritiesByUserId(u.getId());
+        List<Authority> actualResult = authorityDao.findAuthoritiesByUserId(u.getId());
 
         assertEquals(exceptedResult, actualResult);
 

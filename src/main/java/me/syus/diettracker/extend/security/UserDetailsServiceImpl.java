@@ -49,7 +49,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             throw new UsernameNotFoundException("can't find user record from: " + s);
         }
         List<Authority> userAuthorities = userService.findAuthorities(domainUser);
-//        Collection<GrantedAuthority> authorities = getAuthorities(userAuthorities);
         domainUser.setAuthorities(userAuthorities);
 
         return domainUser;

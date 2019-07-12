@@ -44,8 +44,8 @@ public class JwtTokenUtilTest {
         user.setPassword("abc123");
         userService.save(user);
         String token = jwtTokenUtil.generateToken(userService.findByEmailOrUsername("unituser"));
-        String[] actualResult = token.split(".", 3);
-
+        logger.debug("token="+token);
+        String[] actualResult = token.split("\\.");
         assertEquals(actualResult.length, 3);
     }
 

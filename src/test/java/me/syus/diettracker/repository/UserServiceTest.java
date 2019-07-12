@@ -31,7 +31,7 @@ public class UserServiceTest {
     @Autowired
     private SessionFactory sessionFactory;
     @Autowired
-    private AuthorityRepository authorityRepository;
+    private AuthorityDao authorityDao;
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -85,7 +85,7 @@ public class UserServiceTest {
         actualResult.setPassword("akjdfd");
         userService.createUser(actualResult);
 
-        assertEquals(expectedResult, authorityRepository.findAuthoritiesByUserId(actualResult.getId()).get(0).getAuthority());
+        assertEquals(expectedResult, authorityDao.findAuthoritiesByUserId(actualResult.getId()).get(0).getAuthority());
     }
 
 }

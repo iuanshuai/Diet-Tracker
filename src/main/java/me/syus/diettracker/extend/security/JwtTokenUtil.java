@@ -6,7 +6,6 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.converter.json.GsonBuilderUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
@@ -53,7 +52,6 @@ public class JwtTokenUtil {
 //                .compact();
 //        result.put("token", token);
 //        return new (result);
-        // TODO Convert token String to json format
         return Jwts.builder()
                 .setClaims(claims)
                 .setExpiration(generateExpireDate())
