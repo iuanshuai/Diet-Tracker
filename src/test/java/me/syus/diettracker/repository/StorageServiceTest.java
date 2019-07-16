@@ -11,6 +11,15 @@ import static junit.framework.TestCase.assertNotNull;
 
 public class StorageServiceTest {
 
+
+
+//    @Test
+//    public void getObject() {
+//        String key = "testKey";
+//
+//    }
+
+
     @Test
     public void putObjectTest() {
 
