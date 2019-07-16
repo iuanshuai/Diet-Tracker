@@ -15,6 +15,7 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <org.slf4j-version>1.7.25</org.slf4j-version>
         <fasterxml-jackson.version>2.9.9</fasterxml-jackson.version>
+        <aws.sdk.version>1.11.592</aws.sdk.version>
     </properties>
 
 
@@ -214,6 +215,16 @@
             <artifactId>java-jwt</artifactId>
             <version>3.4.0</version>
         </dependency>
+
+
+
+        <!--- aws sdk-->
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk</artifactId>
+            <version>${aws.sdk.version}</version>
+        </dependency>
+
 
 
     </dependencies>
