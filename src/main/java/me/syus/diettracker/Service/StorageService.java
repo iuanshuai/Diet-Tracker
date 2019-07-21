@@ -20,9 +20,9 @@ public class StorageService {
     }
 
 
-    public void getObject(String bucket, String S3Key, File file) {
-        s3.putObject(bucket, S3Key, file);
-    }
+//    public void getObject(String bucket, String S3Key, File file) {
+//        s3.putObject(bucket, S3Key, file);
+//    }
 
     public S3Object getObject(String S3key) {
         return s3.getObject(bucket, S3key);

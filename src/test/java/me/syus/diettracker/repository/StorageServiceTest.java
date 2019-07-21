@@ -1,15 +1,9 @@
 package me.syus.diettracker.repository;
-
-
 import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.S3Object;
 import me.syus.diettracker.Service.StorageService;
 import org.junit.Test;
-import org.mockito.Mockito;
-
 import java.io.File;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
@@ -23,7 +17,7 @@ public class StorageServiceTest {
     public void putObjectTest() {
 
 //        AmazonS3 s3 = AmazonS3ClientBuilder.standard().build();
-        AmazonS3 s3 = Mockito.mock(AmazonS3.class);
+        AmazonS3 s3 = mock(AmazonS3.class);
         StorageService ss = new StorageService(s3);
         ss.setBucket("xxxx-xxxx");
         File testFile = new File("xxx");
@@ -38,11 +32,11 @@ public class StorageServiceTest {
     @Test
     public void getObjectTest() {
 
-        AmazonS3 s3 = Mockito.mock(AmazonS3.class);
+        AmazonS3 s3 = mock(AmazonS3.class);
         StorageService ss = new StorageService(s3);
         ss.setBucket("xxxx-xxxx");
         String key = "dummyKey";
-        
+
 //        S3Object resultObject = new S3Object();
         S3Object resultObject = mock(S3Object.class);
         when(resultObject.getKey()).thenReturn(key);
