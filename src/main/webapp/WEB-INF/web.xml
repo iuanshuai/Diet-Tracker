@@ -50,6 +50,7 @@
     </servlet-mapping>
 
 
+    <!--spring security filter-->
     <filter>
         <filter-name>springSecurityFilterChain</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>

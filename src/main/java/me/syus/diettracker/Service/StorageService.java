@@ -1,9 +1,12 @@
 package me.syus.diettracker.Service;
 
 import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.model.AmazonS3Exception;
 import com.amazonaws.services.s3.model.S3Object;
+import org.joda.time.DateTime;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 
 public class StorageService {
 
@@ -20,12 +23,13 @@ public class StorageService {
     }
 
 
-//    public void getObject(String bucket, String S3Key, File file) {
-//        s3.putObject(bucket, S3Key, file);
-//    }
-
     public S3Object getObject(String S3key) {
         return s3.getObject(bucket, S3key);
+    }
+
+    public String getObjectUrl(String S3key) {
+        return s3.getUrl(bucket, S3key).toString();
+
     }
 
     public String getBucket() {
@@ -35,4 +39,6 @@ public class StorageService {
     public void setBucket(String bucket) {
         this.bucket = bucket;
     }
+
+
 }
