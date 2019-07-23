@@ -20,7 +20,9 @@ public class Image {
     @Column
     private String url;
 
-//    private String s3key;
+    @Column
+    private String s3key;
+
 
     @ManyToOne
     @JoinColumn(name="food_id")
@@ -52,6 +54,14 @@ public class Image {
 
     public void setFood(Food food1) {
         this.food = food1;
+    }
+
+    public String getS3key() {
+        return s3key;
+    }
+
+    public void setS3key(String s3key) {
+        this.s3key = s3key;
     }
 
     public Image() {
