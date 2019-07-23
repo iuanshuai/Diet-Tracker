@@ -20,6 +20,8 @@ public class Image {
     @Column
     private String url;
 
+//    private String s3key;
+
     @ManyToOne
     @JoinColumn(name="food_id")
     private Food food;

@@ -1,12 +1,7 @@
 package me.syus.diettracker.Service;
-
 import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.model.AmazonS3Exception;
 import com.amazonaws.services.s3.model.S3Object;
-import org.joda.time.DateTime;
-
 import java.io.File;
-import java.io.FileNotFoundException;
 
 public class StorageService {
 

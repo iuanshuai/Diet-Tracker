@@ -1,14 +1,11 @@
 package me.syus.diettracker.repository;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.S3Object;
-import com.amazonaws.services.simplesystemsmanagement.model.S3OutputUrl;
 import me.syus.diettracker.Service.StorageService;
-import org.joda.time.DateTime;
 import org.junit.Test;
 import java.io.File;
-import java.net.*;
-import java.util.Date;
-
+import java.net.MalformedURLException;
+import java.net.URL;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
@@ -16,7 +13,6 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
 public class StorageServiceTest {
-
 
     @Test
     public void putObjectTest() {
@@ -56,19 +52,17 @@ public class StorageServiceTest {
     }
 
 
-
     @Test
     public void getObjectUrlTest() throws MalformedURLException {
         AmazonS3 s3 = mock(AmazonS3.class);
         StorageService ss = new StorageService(s3);
         ss.setBucket("xxxx-xxxx");
         String key = "dummyKey";
-        String urlString = "http://test.com/test.zip";
+        String urlString = "http://test.com/.zip";
         when(s3.getUrl(ss.getBucket(), key)).thenReturn(new URL(urlString));
         String actualResult = ss.getObjectUrl(key);
+        verify(s3, times(1)).getUrl(ss.getBucket(), key);
         assertEquals(urlString, actualResult);
-
-
     }
 
 
