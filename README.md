@@ -103,7 +103,7 @@ POST - http://localhost:8080/api/users/signup
 }
 ```
 * Postman snapshoot for user sign up
-![](https://#)
+![](https://github.com/iuanshuai/Diet-Tracker/blob/master/pic/user%20sign%20up.png?raw=true)
 
 
 2. User Login
@@ -124,7 +124,7 @@ POST http://localhost:8080/api/users/login
 }
 ```
 * Postman snapshoot for user login 
-![](https://#)
+![](https://github.com/iuanshuai/Diet-Tracker/blob/master/pic/user%20login.png?raw=true)
 
 
 3. Post Image to AWS S3
