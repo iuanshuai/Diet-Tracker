@@ -4,6 +4,7 @@ import com.amazonaws.Response;
 import me.syus.diettracker.Service.ImageService;
 import me.syus.diettracker.Service.StorageService;
 import me.syus.diettracker.domain.Image;
+import me.syus.diettracker.domain.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +42,7 @@ public class MiscController {
         Image image = null;
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String username = (String) auth.getPrincipal();
+        User username = (User) auth.getPrincipal();
         logger.debug("current user is: " + username);
 
 //        Response response = new Response();

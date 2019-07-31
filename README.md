@@ -23,21 +23,21 @@ Project Business Rules
 -----------------------------------
 * Object: User, Food, Image, Record
 * Relationships:
-    i. One user could have many records
-    ii. One record could have several foods
-    iii. One food could have many images
-    iv. One record can only have one user
+    1. One user could have many records
+    1. One record could have several foods
+    1. One food could have many images
+    1. One record can only have one user
 * Project Approach
-    i. Created User, Food, Image, Record domain
-    ii. Used Hibernate to do the database schema migration
-    iii. Used JDBC to connect project with Postgres
-    iv. Configured Spring Security for Authentication
-    v. Created repository, service and did test
-    vi. Did mock test for AWS S3 Storage service
-    vii. Created Controllers and Restful APIs
-    viii. Integrated third-party application AWS SQS and did Mock test
-    ix. Used Postman to interact with back-end project
-    x. Package my project into a Docker image
+    1. Created User, Food, Image, Record domain
+    1. Used Hibernate to do the database schema migration
+    1. Used JDBC to connect project with Postgres
+    1. Configured Spring Security for Authentication
+    1. Created repository, service and did test
+    1. Did mock test for AWS S3 Storage service
+    1. Created Controllers and Restful APIs
+    1. Integrated third-party application AWS SQS and did Mock test
+    1. Used Postman to interact with back-end project
+    1. Package my project into a Docker image
 
 Build & Installation
 -----------------------------------
@@ -126,12 +126,9 @@ POST http://localhost:8080/api/users/login
 * Postman snapshoot for user login 
 ![](https://github.com/iuanshuai/Diet-Tracker/blob/master/pic/user%20login.png?raw=true)
 
-
 3. Post Image to AWS S3
-
-
-4. Send Message to AWS SQS
-
+* Postman snapshoot for post image to AWS S3
+![](https://github.com/iuanshuai/Diet-Tracker/blob/master/pic/upload%20img.png?raw=true)
 
 
 
