@@ -3,7 +3,7 @@
 ![Apache License, Version 2.0, January 2004](https://img.shields.io/github/license/iuanshuai/Diet-Tracker.svg?label=License)
 ![](https://img.shields.io/badge/Java-1.8-green.svg)
 
-
+This application makes tracking calories and getting the proper nutrition easy. With the Diet-Tracker, you can get a personalized daily calorie goal, keep track of your weight and progress over time, and review detailed data and create custom goals for your micronutrients.
 
 Project Technical Overview
 -----------------------------------
