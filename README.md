@@ -7,9 +7,9 @@ This application makes tracking calories and getting the proper nutrition easy. 
 
 Project Technical Overview
 -----------------------------------
-* Java & IDE: JDK 8 IntelliJ
-* Back-end:  Spring MVC 3.2.9 \(Configured by annotation)
+* [Spring MVC](https://spring.io/guides/gs/serving-web-content/)
 * [Spring Security](https://spring.io/projects/spring-security)
+* [Hibernate](http://hibernate.org)
 * [Postgres](https://www.postgresql.org)
 * [Flyway](https://flywaydb.org/)
 * [Tomcat](https://tomcat.apache.org/download-70.cgi)
@@ -75,13 +75,56 @@ Build & Installation
 Demo
 -----------------------------------
 1. User Sign Up
-    ```
-    POST - http://localhost:8080/api/users/signup
-    ```
+```
+POST - http://localhost:8080/api/users/signup
+```
 * Requestbody
+```
+{
+    "username": "trackertest",
+    "password": "testpwd",
+    "firstName": "Johnny",
+    "lastName": "Appleseed",
+    "email": "jappleseed@icloud.com" 
+}
+```
 * Responsebody
+```
+{
+    "username": "trackertest",
+    "password": "$2a$10$DeoWMcongUSPkU.//RIOpOcpnBStF.cYGrcjiwwpSH3O9HBzh0k3y",
+    "email": "jappleseed@icloud.com",
+    "lastName": "Appleseed",
+    "firstName": "Johnny",
+    "id": 28,
+    "accountNonExpired": true,
+    "accountNonLocked": true,
+    "credentialsNonExpired": true
+}
+```
+* Postman snapshoot for user sign up
+![](https://#)
+
 
 2. User Login
+```
+POST http://localhost:8080/api/users/login
+```
+* Requestbody
+```
+{
+    "username": "trackertest",
+    "password": "testpwd"
+}
+```
+* Responsebody
+```
+{
+    "token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0cmFja2VydGVzdCIsImNyZWF0ZWQiOjE1NjQ1OTk0MjM2OTAsImV4cCI6MTU2NDY4NTgyM30.9RfDGCSkp1Dxc_ZLeqLjcDfyRHbGJjDNDiCaZPwd8lyy5aqEEYyFzemOy9vGI_d7wdj9eAcalrI74teOUi56Hw"
+}
+```
+* Postman snapshoot for user login 
+![](https://#)
 
 
 3. Post Image to AWS S3
