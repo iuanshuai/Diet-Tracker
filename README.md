@@ -37,19 +37,19 @@ Build & Installation
     cd Diet-Tracker
     ```
 * Environment configuration
-```
-location:./src/main/resources/META-INF/env
-   
-Template:
-database.driverName=${driverName}
-database.url=${url}
-database.port=${port}
-database.name=${name}
-database.username=${username}
-database.password=${password}
-   
-mvn compile -Dspring.profiles.active=${env}
-```
+    ```
+    location:./src/main/resources/META-INF/env
+       
+    Template:
+    database.driverName=${driverName}
+    database.url=${url}
+    database.port=${port}
+    database.name=${name}
+    database.username=${username}
+    database.password=${password}
+       
+    mvn compile -Dspring.profiles.active=${env}
+    ```
 * Do the database migration
     ```
     mvn clean compile flyway:migrate -P unit -Ddb_username=admin -Ddb_password=password
