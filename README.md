@@ -21,8 +21,23 @@ Project Technical Overview
 
 Project Business Rules
 -----------------------------------
-* Object: 
+* Object: User, Food, Image, Record
 * Relationships:
+    i. One user could have many records
+    ii. One record could have several foods
+    iii. One food could have many images
+    iv. One record can only have one user
+* Project Approach
+    i. Created User, Food, Image, Record domain
+    ii. Used Hibernate to do the database schema migration
+    iii. Used JDBC to connect project with Postgres
+    iv. Configured Spring Security for Authentication
+    v. Created repository, service and did test
+    vi. Did mock test for AWS S3 Storage service
+    vii. Created Controllers and Restful APIs
+    viii. Integrated third-party application AWS SQS and did Mock test
+    ix. Used Postman to interact with back-end project
+    x. Package my project into a Docker image
 
 Build & Installation
 -----------------------------------
@@ -59,20 +74,20 @@ Build & Installation
 
 Demo
 -----------------------------------
-## User Sign Up
-```
-POST - http://localhost:8080/api/users/signup
-```
+1. User Sign Up
+    ```
+    POST - http://localhost:8080/api/users/signup
+    ```
 * Requestbody
 * Responsebody
 
-## User Login
+2. User Login
 
 
-## Post Image to AWS S3
+3. Post Image to AWS S3
 
 
-## Send Message to AWS SQS
+4. Send Message to AWS SQS
 
 
 
