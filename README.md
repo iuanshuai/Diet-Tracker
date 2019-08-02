@@ -74,59 +74,61 @@ Build & Installation
 
 Demo
 -----------------------------------
-1. User Sign Up
-```
-POST - http://localhost:8080/api/users/signup
-```
+#### User Sign Up
+* API
+    ```
+    POST - http://localhost:8080/api/users/signup
+    ```
 * Requestbody
-```
-{
-    "username": "trackertest",
-    "password": "testpwd",
-    "firstName": "Johnny",
-    "lastName": "Appleseed",
-    "email": "jappleseed@icloud.com" 
-}
-```
+    ```
+    {
+        "username": "trackertest",
+        "password": "testpwd",
+        "firstName": "Johnny",
+        "lastName": "Appleseed",
+        "email": "jappleseed@icloud.com" 
+    }
+    ```
 * Responsebody
-```
-{
-    "username": "trackertest",
-    "password": "$2a$10$DeoWMcongUSPkU.//RIOpOcpnBStF.cYGrcjiwwpSH3O9HBzh0k3y",
-    "email": "jappleseed@icloud.com",
-    "lastName": "Appleseed",
-    "firstName": "Johnny",
-    "id": 28,
-    "accountNonExpired": true,
-    "accountNonLocked": true,
-    "credentialsNonExpired": true
-}
-```
+    ```
+    {
+        "username": "trackertest",
+        "password": "$2a$10$DeoWMcongUSPkU.//RIOpOcpnBStF.cYGrcjiwwpSH3O9HBzh0k3y",
+        "email": "jappleseed@icloud.com",
+        "lastName": "Appleseed",
+        "firstName": "Johnny",
+        "id": 28,
+        "accountNonExpired": true,
+        "accountNonLocked": true,
+        "credentialsNonExpired": true
+    }
+    ```
 * Postman snapshoot for user sign up
 ![](https://github.com/iuanshuai/Diet-Tracker/blob/master/pic/user%20sign%20up.png?raw=true)
 
 
-2. User Login
-```
-POST http://localhost:8080/api/users/login
-```
+#### User Login
+* API
+    ```
+    POST http://localhost:8080/api/users/login
+    ```
 * Requestbody
-```
-{
-    "username": "trackertest",
-    "password": "testpwd"
-}
-```
+    ```
+    {
+        "username": "trackertest",
+        "password": "testpwd"
+    }
+    ```
 * Responsebody
-```
-{
-    "token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0cmFja2VydGVzdCIsImNyZWF0ZWQiOjE1NjQ1OTk0MjM2OTAsImV4cCI6MTU2NDY4NTgyM30.9RfDGCSkp1Dxc_ZLeqLjcDfyRHbGJjDNDiCaZPwd8lyy5aqEEYyFzemOy9vGI_d7wdj9eAcalrI74teOUi56Hw"
-}
-```
+    ```
+    {
+        "token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0cmFja2VydGVzdCIsImNyZWF0ZWQiOjE1NjQ1OTk0MjM2OTAsImV4cCI6MTU2NDY4NTgyM30.9RfDGCSkp1Dxc_ZLeqLjcDfyRHbGJjDNDiCaZPwd8lyy5aqEEYyFzemOy9vGI_d7wdj9eAcalrI74teOUi56Hw"
+    }
+    ```
 * Postman snapshoot for user login 
 ![](https://github.com/iuanshuai/Diet-Tracker/blob/master/pic/user%20login.png?raw=true)
 
-3. Post Image to AWS S3
+* Post Image to AWS S3
 * Postman snapshoot for post image to AWS S3
 ![](https://github.com/iuanshuai/Diet-Tracker/blob/master/pic/upload%20img.png?raw=true)
 
