@@ -1,6 +1,5 @@
 package me.syus.diettracker.api;
 
-import com.amazonaws.Response;
 import me.syus.diettracker.Service.ImageService;
 import me.syus.diettracker.Service.StorageService;
 import me.syus.diettracker.domain.Image;
@@ -8,6 +7,8 @@ import me.syus.diettracker.domain.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -31,10 +32,10 @@ public class MiscController {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    //    @RequestBody
+    // @RequestBody
     // /api/misc/picture POST
     @RequestMapping(value = "/picture", method = RequestMethod.POST)
-    public Image uploadImage(@RequestParam("pic") MultipartFile file) {
+    public ResponseEntity<Image> uploadImage(@RequestParam("pic") MultipartFile file) {
 
         UUID uuid = UUID.randomUUID();
         File f = new File(System.getProperty("catalina.base") + uuid.toString());
@@ -46,7 +47,6 @@ public class MiscController {
         logger.debug("current user is: " + username);
 
 //        Response response = new Response();
-
 
         try {
             file.transferTo(f);
@@ -61,13 +61,11 @@ public class MiscController {
             logger.info("check uploaded new file name" + fileName);
         } catch (IOException e) {
             e.printStackTrace();
-            //todo throw an http status code
-//            response.setMessage("Op we have a little problem");
+            // throw an http status code
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
-        return image;
+        return  new ResponseEntity(image, HttpStatus.OK);
     }
-
 
 
     // /api/misc/picture GET

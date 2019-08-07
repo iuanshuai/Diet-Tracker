@@ -43,33 +43,6 @@ public class FoodDaoTest {
         assertEquals(expectedResult, actualResult);
     }
 
-    @Autowired
-    private SessionFactory sessionFactory;
-
-
-    @Test
-    @Transactional
-    public void findByIdEagerTest() {
-        Food expectedResult = new Food();
-        expectedResult.setFoodName("Chicken Nuddle");
-        expectedResult.setFoodType("nuddle");
-        expectedResult.setFoodCalorie(540);
-        foodDao.save(expectedResult);
-        Image img = new Image();
-        img.setUrl("https://test");
-        img.setTitle("testImage");
-        img.setFood(expectedResult);
-        imageDao.save(img);
-        assertNotNull(img.getId());
-
-        sessionFactory.getCurrentSession().flush();
-        sessionFactory.getCurrentSession().refresh(expectedResult);
-        Food actualResult = foodDao.findByIdEager(expectedResult.getId());
-        List images = actualResult.getImages();
-        assertEquals(images.size(), 1);
-
-    }
-
 
 
 

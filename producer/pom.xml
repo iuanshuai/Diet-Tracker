@@ -272,7 +272,7 @@
                         <version>${flyway.version}</version>
                         <configuration>
                             <driver>org.postgresql.Driver</driver>
-                            <url>jdbc:postgresql://localhost:5430/diettracker</url>
+                            <url>jdbc:postgresql://${db_address}/diettracker</url>
                             <user>${db_username}</user>
                             <password>${db_password}</password>
                             <locations>
@@ -295,7 +295,8 @@
                         <version>${flyway.version}</version>
                         <configuration>
                             <driver>org.postgresql.Driver</driver>
-                            <url>jdbc:postgresql://localhost:5430/diettracker_unit</url>
+<!--                            <url>${db_servername}</url>-->
+                            <url>jdbc:postgresql://${db_address}/diettracker_unit</url>
                             <user>${db_username}</user>
                             <password>${db_password}</password>
                             <locations>
